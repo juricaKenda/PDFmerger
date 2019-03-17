@@ -1,3 +1,6 @@
+
+package components;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -7,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
+
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -142,7 +145,7 @@ public class Graphics {
 				this.handler.copyFromTo(files[i].toString(),from,to);
 			}
 		}
-		this.textArea.append("\n"+this.outputLoc);
+		this.textArea.append("\nCreated file is located at: "+this.outputLoc);
 		
 	}
 	/**
@@ -158,6 +161,9 @@ public class Graphics {
 				if(JFileChooser.APPROVE_OPTION == fileChooser.showSaveDialog(frame)) {
 					File innerFile = fileChooser.getSelectedFile();
 					outputLoc = innerFile.toString();
+					if(!outputLoc.endsWith(".pdf")) {
+						outputLoc += ".pdf";
+					}
 					mergeFiles();
 				}
 			}
